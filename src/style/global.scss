@@ -1,0 +1,62 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  font-family:PingFangSC-Medium;
+  font-size: .14rem;
+  overflow: hidden;
+}
+html,body,ul,li,p{
+  margin: 0;
+  padding: 0;
+}
+i{
+  font-style: normal;
+}
+li{
+  list-style: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: hidden;
+  height: 0;
+}
+
+
+#app-one {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+
+// table 让长字符串强制换行，防止宽度不能适应 需要用 customRender  return出去一个带 .cell的元素
+// 默认不需要
+.cell{
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  line-height: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
