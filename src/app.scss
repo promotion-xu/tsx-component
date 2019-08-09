@@ -10,11 +10,10 @@
       flex: 1;
       height: 100vh;
       overflow-y: auto;
-      padding-top: 54px;
       position: relative;
     }
     .page-wrap{
-      height: calc(100vh - 54px);
+      height: 100%;
       overflow: auto;
       overflow-x: hidden;
       width: 100%;

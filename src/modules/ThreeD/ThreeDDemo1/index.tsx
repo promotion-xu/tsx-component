@@ -14,7 +14,7 @@ export default class ThreeD extends Vue {
 
   render() {
     return (
-      <div class='threeD' ref='threeD'>
+      <div class='threeD__demo1' ref='threeD'>
       </div>
     )
   }
