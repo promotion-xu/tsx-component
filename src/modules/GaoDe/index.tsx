@@ -23,6 +23,7 @@ export default class GaoDe extends Vue {
     //   pitch: 75, // 地图俯仰角度，有效范围 0 度- 83 度
     // });
     var mysubway = subway("gaode__container", {easy: 1});
+    
   }
 
 }

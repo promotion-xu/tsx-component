@@ -1,5 +1,4 @@
 import { Component, Vue } from 'vue-property-decorator';
-import config from '@/utils/config';
 import Menu from './Menu';
 import './index.scss';
 const logo = require('@/assets/images/sidebar/logo.png');

@@ -10,38 +10,15 @@ export const dyRoutes: RouterItem[] = [
     name: 'home',
     icon: '',
     component: () => import('@/modules/Home'),
-    isMenu: true
+    isMenu: true,
   },
   {
     path: '/threeD',
     title: '3D视图',
     name: 'threeD',
     icon: '',
-    component: () => import('@/modules/ThreeD'),
+    component: () => import('@/modules/ThreeD/ThingJsDemo3'),
     isMenu: true,
-    children: [
-      {
-        path: 'demo1',
-        title: 'ThreeJs-demo1',
-        name: 'demo1',
-        isMenu: true,
-        component: () => import('@/modules/ThreeD/ThreeDDemo1')
-      },
-      {
-        path: 'demo2',
-        title: 'ThreeD-demo2',
-        name: 'demo2',
-        isMenu: true,
-        component: () => import('@/modules/ThreeD/ThreeDDemo2')
-      },
-      {
-        path: 'demo3',
-        title: 'ThingJs-demo3',
-        name: 'ThingJS-demo3',
-        isMenu: true,
-        component: () => import('@/modules/ThreeD/ThingJsDemo3')
-      }
-    ]
   },
   {
     path: '/gaode',
@@ -51,7 +28,44 @@ export const dyRoutes: RouterItem[] = [
     isMenu: true,
     component: () => import('@/modules/GaoDe')
   },
-
+  {
+    path: '/threeD/demo1',
+    title: 'ThreeJs-demo1',
+    name: 'ThreeJs-demo1',
+    isMenu: true,
+    icon: '',
+    component: () => import('@/modules/ThreeD/ThreeDDemo1')
+  },
+  {
+    path: '/threeD/demo2',
+    title: 'ThreeD-demo2',
+    name: 'ThreeJs-demo2',
+    isMenu: true,
+    icon: '',
+    component: () => import('@/modules/ThreeD/ThreeDDemo2')
+  },
+  {
+    path: '/threeD/demo3',
+    title: 'ThingJs-demo3',
+    name: 'ThingJS-demo3',
+    icon: '',
+    isMenu: true,
+    component: () => import('@/modules/ThreeD/ThingJsDemo3')
+  },
+  {
+    path: '/threeD/demo4',
+    title: 'ThingJs-demo4',
+    name: 'ThingJs-demo4',
+    isMenu: true,
+    icon: '',
+    component: () => import('@/modules/ThreeD/ThingJsDemo4')
+  },
+  {
+    path: '/faceDetect',
+    title: '人脸定位',
+    isMenu: true,
+    component: () => import('@/modules/Face/index')
+  }
 ]
 
 const baseRoute = [

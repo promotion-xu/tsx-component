@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import dat from 'dat.gui';
 
 @Component({})
-export default class ThreeD extends Vue {
+export default class ThreeDDemo1 extends Vue {
 
   controls = {
     scene: null,
@@ -23,6 +23,7 @@ export default class ThreeD extends Vue {
     this.$nextTick(() => {
       this.init()
     })
+    console.log('ThreeDDemo1')
   }
 
   init () {

@@ -1,16 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
-import * as THREE from 'three';
-import dat from 'dat.gui';
 
 @Component({})
-export default class ThreeD extends Vue {
-
-  controls = {
-    scene: null,
-    camera: null,
-    renderer: null,
-    rotationSpeed: 0.02
-  }
+export default class ThreeDDemo2 extends Vue {
 
   render() {
     return (
@@ -21,6 +12,6 @@ export default class ThreeD extends Vue {
   }
 
   created() {
-
+    console.log("ThreeDDemo2")
   }
 }

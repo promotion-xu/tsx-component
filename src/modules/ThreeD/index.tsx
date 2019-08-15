@@ -21,9 +21,10 @@ export default class ThreeD extends Vue {
   }
 
   created() {
-    this.$nextTick(() => {
-      this.init()
-    })
+    console.log('ThreeD')
+    // this.$nextTick(() => {
+    //   this.init()
+    // })
   }
 
   init () {

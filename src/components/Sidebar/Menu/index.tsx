@@ -11,8 +11,8 @@ import {
   Icon,
 } from 'ant-design-vue';
 import { RouterItem } from '@/interface';
-import { routeToArray } from '@/utils/router';
-import { dyRoutes } from '@/router';
+// import { dyRoutes } from '@/router';
+import { routes } from '@/utils/menu';
 import './index.scss';
 
 
@@ -32,10 +32,7 @@ export default class MenuList extends Vue  {
 
   @Watch('$route', { immediate: true, deep: true })
   routeChange(to: any, from: any) {
-    this.keys = routeToArray(to.path).routeArr;
-    const open = this.keys.concat();
-    open.pop();
-    this.openKeys = open || [];
+    this.keys = [String(to.path)];
   }
 
   openChange(openKeys: string[]) {
@@ -52,19 +49,18 @@ export default class MenuList extends Vue  {
         class="slMenu"
         inlineCollapsed={this.collapsed}
         onOpenChange={this.openChange}
-        onClick={(params: { item: any, key: string, keyPath: string[] }) => {
-          const keyPath = params.keyPath.reverse();
-          this.openPage(keyPath.join('/'));
+        onClick={(e: any) => {
+          this.openPage(e.key);
         }}
       >
-        {this.renderMenu(dyRoutes)}
+        {this.renderMenu(routes)}
       </a-menu>
     );
   }
 
   renderMenu(menuData: RouterItem[]) {
     return menuData.map((item: RouterItem) => {
-      if (item.isMenu && item.children && item.children.length && item.children.some((el: any) => el.isMenu)) {
+      if (item.isMenu && item.subs && item.subs.length && item.subs.some((el: any) => el.isMenu)) {
         return <a-submenu
           id={item.path}
           key={item.path}>
@@ -72,7 +68,7 @@ export default class MenuList extends Vue  {
             {/* {item.icon && <img src={require(`@/assets/icon/${item.icon}.png`)} alt={item.icon} />} */}
             <span>{item.title}</span>
           </template>
-          {this.renderMenu(item.children)}
+          {this.renderMenu(item.subs)}
         </a-submenu>;
       }
       if (item.isMenu) {
@@ -89,6 +85,7 @@ export default class MenuList extends Vue  {
   }
 
   openPage(path: string) {
+    
     this.$router.push(path);
   }
 }
