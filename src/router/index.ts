@@ -61,10 +61,16 @@ export const dyRoutes: RouterItem[] = [
     component: () => import('@/modules/ThreeD/ThingJsDemo4')
   },
   {
-    path: '/faceDetect',
+    path: '/face/position',
     title: '人脸定位',
     isMenu: true,
-    component: () => import('@/modules/Face/index')
+    component: () => import('@/modules/Face/FacePosition/index')
+  },
+  {
+    path: '/face/faceDrawing',
+    title: '人脸标注',
+    isMenu: true,
+    component: () => import('@/modules/Face/FaceDrawing')
   }
 ]
 

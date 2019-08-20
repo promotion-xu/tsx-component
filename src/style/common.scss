@@ -6,3 +6,58 @@ $logoBg :#002140;
 $fontDark: #000;
 $fontSelect:#1890FF;
 $loadingBg:rgba(0,0,0,.1);
+
+// 文本大小
+$dialog-head-text-size: 26px;
+$nav-text-size: 22px;
+$title-text-size: 20px;
+$basic-text-size: 18px;
+$support-text-size: 16px;
+$secondary-text-size: 14px;
+
+// Colors
+$color-warning: #ffb80e;
+$color-danger: #ff5980;
+
+// 文本字体颜色
+$basic-text-color: #343637;
+$support-text-color: #616365;
+$secondary-text-color: #9da0a4;
+$warn-text-color: #ff0001;
+$success-text-color: #5cb533;
+$primary-text-color: #008aff;
+$info-text-color: #ff9c32;
+$enable-text-color: #29cc72;
+$color-text-white: #ffffff;
+$color-text-primary: #cddeff;
+
+//链接字体颜色
+$basic-link-color: $primary-text-color;
+$basic-link-hover-color: #59acff;
+$text-link-color: $basic-text-color;
+$text-link-hover-color: $basic-link-hover-color;
+$text-support-link-color: $support-text-color;
+$text-support-hover-link-color: $basic-link-hover-color;
+
+$hover-border-color: $primary-text-color;
+$hover-bg-color: $basic-link-hover-color;
+$bg-color: $primary-text-color;
+$border-color: $basic-link-hover-color;
+$global-number-text-color: $color-warning;
+$global-number-text-error-color: $color-danger;
+
+// Global Task
+$global-task-fill: #22499f;
+$global-task-border-color: #5c9dff;
+$global-task-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.25);
+$global-task-title-fill: #1c91ff;
+$global-task-title-color: $color-text-white;
+$global-task-item-color: $color-text-primary;
+$global-task-item-hover-color: $color-text-white;
+$global-task-item-hover-fill: rgba(28, 145, 255, 0.7);
+$global-task-item-status-color-processing: #ffb80e;
+$global-task-item-status-color-stoped: rgba(255, 255, 255, 0.4);
+$global-task-item-button-stop: #ff5980;
+$global-task-item-button-download: #0eff96;
+
+$scrollbar-color: rgba(71, 146, 240, 0.7);

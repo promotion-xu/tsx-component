@@ -1,0 +1,79 @@
+@import '@/style/index.scss';
+
+.FaceMarker {
+  &__container {
+    display: flex;
+    margin: -20px -30px;
+  }
+
+  &__sidebar {
+    width: 250px;
+    padding: 0 10px;
+  }
+
+  &__instructionTitile {
+    color: $basic-link-color;
+    text-align: center;
+    margin: 15px auto;
+    font-size: 19px;
+  }
+
+  &__operation {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 13px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: $primary-text-color;
+      top: 10px;
+      left: 1px;
+    }
+  }
+
+  &__light {
+    color: $secondary-text-color;
+    text-align: center;
+  }
+
+  &__demo {
+    border-top: 1px dashed #c2c2c2;
+    margin-top: 30px;
+    padding-top: 30px;
+    text-align: center;
+  }
+
+
+  &__imageContainer {
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    background: #333333;
+    cursor: move;
+  }
+
+  &__image {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    // .FaceMarker__rect {
+    //   border-style: dashed;
+    // }
+  }
+
+  &__demoImage {
+    margin: 16px auto;
+    width: 172px;
+    height: 219px;
+    background-image: url('../../assets/images/face/markerDemo.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+
+
