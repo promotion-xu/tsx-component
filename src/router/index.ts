@@ -64,20 +64,26 @@ export const dyRoutes: RouterItem[] = [
     path: '/face/position',
     title: '人脸定位',
     isMenu: true,
-    component: () => import('@/modules/Face/FacePosition/index')
+    component: () => import('@/modules/Face/FacePosition')
   },
   {
     path: '/face/faceDrawing',
     title: '人脸标注',
     isMenu: true,
     component: () => import('@/modules/Face/FaceDrawing')
+  },
+  {
+    path: '/ws',
+    title: 'WebSocket',
+    isMenu: true,
+    component: () => import('@/modules/WebSocket')
   }
 ]
 
 const baseRoute = [
   { 
     path: '/', 
-    redirect: '/login', 
+    redirect: '/home', 
   },
   {
     path: '/login',

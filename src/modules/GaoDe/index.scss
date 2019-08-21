@@ -7,4 +7,14 @@
   #gaode__container #drag_handle {
     position: absolute !important;
   }
+
+  .video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8rem;
+    height: 5rem;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+  }
 }

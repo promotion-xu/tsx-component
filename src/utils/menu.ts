@@ -71,6 +71,12 @@ export const routes: RouterItem[] = [
         isMenu: true
       }
     ]
+  },
+  {
+    path: '/ws',
+    title: 'WebSocket',
+    icon: '',
+    isMenu: true
   }
 ]
 
