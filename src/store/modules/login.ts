@@ -1,4 +1,3 @@
-import * as login from '@/api/apis/login';
 
 import { Cache } from '@/utils/cache';
 

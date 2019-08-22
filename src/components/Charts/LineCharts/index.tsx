@@ -34,6 +34,27 @@ require("echarts/lib/component/legend");
   }
 })
 export default class LineCharts extends Vue {
+  // 传入的数据格式
+  // xData = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+  // seriesData = [
+  //   {
+  //     name: 'xuzen',
+  //     data: [50, 2, 3, 4, 5, 6, 7]
+  //   },
+  //   {
+  //     name: 'thl',
+  //     data: [1, 2, 3, 4, 105, 6, 7]
+  //   },
+  //   {
+  //     name: 'xu',
+  //     data: [1, 2, 300, 4, 5, 6, 7]
+  //   },
+  //   {
+  //     name: 'xu',
+  //     data: [1, 2, 3, 4, 5, 6, 700]
+  //   }
+  // ];
+  // legendData = ['xuzen', 'thl', 'xu', 'xu']
 
   readonly legendData: any;
   readonly xData: any;
@@ -44,7 +65,11 @@ export default class LineCharts extends Vue {
 
   render() {
     return (
-      <div style={{ width: '100%', height: '100%' }} id="chart" class="chart"></div>
+      <div 
+        style={{ width: '100%', height: '100%' }} 
+        id="chart" 
+        ref="chart"
+      ></div>
     );
   }
 
@@ -56,11 +81,6 @@ export default class LineCharts extends Vue {
 
   drawLine() {
     var dom = document.getElementById('chart');
-
-    var resizeEcharts = () => {
-      dom!.style.width = (window.innerWidth - 300) + 'px';
-    }
-    resizeEcharts();
     this.myChart = echarts.init(dom);
     const options: any = {
       tooltip: {
@@ -71,7 +91,7 @@ export default class LineCharts extends Vue {
       },
       legend: {
         data: this.legendData,
-        selectedMode: false
+        // selectedMode: false
       },
       grid: {
         left: '3%',
@@ -138,7 +158,6 @@ export default class LineCharts extends Vue {
     this.myChart.setOption(options);
 
     window.onresize = () => {
-      resizeEcharts();
       this.myChart.resize();
     }
   }

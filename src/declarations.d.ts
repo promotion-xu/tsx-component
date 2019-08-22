@@ -1,6 +1,7 @@
 
 
-interface MyWindow extends Window {
+interface Window {
+
   config: {
     title: string;
     host: string;

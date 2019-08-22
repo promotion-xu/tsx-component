@@ -5,6 +5,7 @@ import store from './store';
 import './registerServiceWorker';
 import { setHtmlFontSize } from '@/utils/rem';
 import 'ant-design-vue/dist/antd.css';
+import '../config.js';
 
 Vue.config.productionTip = false
 
