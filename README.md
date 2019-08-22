@@ -31,4 +31,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 #### vue + tsx 模板
-#### 欢迎大佬贡献代码
