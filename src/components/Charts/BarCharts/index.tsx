@@ -1,14 +1,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 const echarts = require('echarts/lib/echarts');
-require('echarts/lib/chart/pie');
+require('echarts/lib/chart/bar');
 require('echarts/lib/component/tooltip');
 require("echarts/lib/component/legend");
 
 
 @Component({
   props: {
-    legendData: {
+    yAxis: {
       type: Array,
       required: true,
       default() {
@@ -25,12 +25,12 @@ require("echarts/lib/component/legend");
   },
   watch: {
     seriesData() {
-      this.drawPie();
+      this.drawBar();
     }
   }
 })
-export default class PieCharts extends Vue {
-  readonly legendData: any;
+export default class BarCharts extends Vue {
+  readonly yAxis: any;
   readonly seriesData: any;
   myChart: any;
 
@@ -41,61 +41,51 @@ export default class PieCharts extends Vue {
   }
 
   mounted() {
-    this.drawPie();
+    this.drawBar();
   }
 
-  drawPie() {
+  drawBar() {
     var dom = this.$refs.chart;
 
     this.myChart = echarts.init(dom);
-
     const option: any = {
-      color: ['#1665D8', '#1DC651', '#0293FF', '#1DBFC6'],
+      color: ['#0293FF', '#1DC651'],
       tooltip: {
-        trigger: 'item',
-        formatter: "{b}: {c} ({d}%)"
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
       },
-      legend: {
-        orient: 'horizontal',
-        x: 'center',
-        y: 'bottom',
-        itemGap: 50,
-        itemWidth: 14,
-        data: this.legendData
+      grid: {
+        left: '3%',
+        right: '8%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+      },
+      yAxis: {
+        type: 'category',
+        data: this.yAxis
       },
       series: [
         {
-          type: 'pie',
-          radius: ['50%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: '30',
-                fontWeight: 'bold'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
+          name: '抓拍统计',
+          type: 'bar',
+          barWidth: 15,
           data: this.seriesData
         }
       ]
     };
 
     this.myChart.setOption(option);
-    window.addEventListener('resize', () => {
+    window.onresize = () => {
       this.myChart.resize();
-    })
+    }
   }
+
 
   beforeDestroy() {
     this.myChart.clear();

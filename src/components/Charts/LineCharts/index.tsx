@@ -31,6 +31,11 @@ require("echarts/lib/component/legend");
         return []
       }
     }
+  },
+  watch: {
+    seriesData() {
+      this.drawLine();
+    }
   }
 })
 export default class LineCharts extends Vue {
@@ -67,7 +72,7 @@ export default class LineCharts extends Vue {
     return (
       <div 
         style={{ width: '100%', height: '100%' }} 
-        id="chart" 
+        class="chart" 
         ref="chart"
       ></div>
     );
@@ -80,9 +85,10 @@ export default class LineCharts extends Vue {
   
 
   drawLine() {
-    var dom = document.getElementById('chart');
+    var dom = this.$refs.chart;
     this.myChart = echarts.init(dom);
     const options: any = {
+      color: ['#0293FF', '#1DC651'],
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -90,6 +96,10 @@ export default class LineCharts extends Vue {
         }
       },
       legend: {
+        icon: 'rect',
+        itemGap: 50,
+        padding: [5, 20],
+        itemWidth: 14,
         data: this.legendData,
         // selectedMode: false
       },
@@ -97,7 +107,7 @@ export default class LineCharts extends Vue {
         left: '3%',
         right: '4%',
         bottom: '3%',
-        containLabel: true
+        containLabel: true,
       },
       xAxis: {
         type: 'category',
@@ -130,7 +140,6 @@ export default class LineCharts extends Vue {
           // // 文字样式
           // itemStyle: {
           //   color(params: any) {
-          //     console.log('params', params);
           //     var colorList = ['#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B']
           //     return colorList[params.dataIndex];
           //   }
@@ -157,9 +166,9 @@ export default class LineCharts extends Vue {
     }
     this.myChart.setOption(options);
 
-    window.onresize = () => {
+    window.addEventListener('resize', () => {
       this.myChart.resize();
-    }
+    })
   }
 
 

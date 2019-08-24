@@ -1,9 +1,185 @@
+@import '@/style/index.scss';
 .subway {
   width: 100%;
   height: 100%;
+  background: #3A72DB;
+  font-weight: 550;
 
-  .show {
-    width: 8rem;
-    height: 4rem;
+  &__header {
+    background-image: url('../../assets/images/login/login_title_white.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    font-size: .32rem;
+    line-height: 26px;
+    color:rgba(255,255,255,1);
+    padding-top: .2rem;
+
+    img {
+      margin-right: 20px;
+      width: 30px;
+      vertical-align: top;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    padding-bottom: 1.6rem;
+    padding-left: .5rem;
+    font-size: 18px;
+    color: $base;
+
+    &__left {
+      width: 4rem;
+      height: 100%;
+    }
+
+    &__middle {
+      width: 8.5rem;
+      height: 7.75rem;
+      padding: .2rem .5rem;
+      border-radius: 4px;
+      text-align: center;
+      background-color: #fff;
+      &:hover {
+        box-shadow: 0 0 150px rgba(0,0,0,.1);
+        z-index: 5;
+        transform: scale(1.01);
+        transition: all 0.5s;
+      }
+    }
+
+    &__header {
+      height: 1rem;
+
+      .title {
+        color: #4285F4;
+        font-size: 22px;
+        height: .4rem;
+
+        img {
+          margin-right: .15rem;
+        }
+      }
+    }
+
+    &__wrapper {
+      height: 6.5rem;
+      padding-top: .2rem;
+    }
+
+    &__map__hq {
+      background: center url('../../assets/images/home/hongqiao__station.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      height: 80%;
+    }
+
+    &__map__rm {
+      background: center url('../../assets/images/home/peopleGroup.png');
+      background-repeat: no-repeat;
+      background-size: '100%';
+      height: 80%;
+    }
+
+    &__capture {
+      height: 16%;
+      margin-top: .1rem;
+      padding-left: .4rem;
+      position: relative;
+    }
+
+    &__realTime {
+      position: absolute;
+      width: .18rem;
+      left: .1rem;
+      top: 3px;
+      color: #fff;
+      background:rgba(58,114,219,1);
+      opacity:1;
+      border-radius:4px;
+      // font-size:16px;
+      font-family:PingFang SC;
+      font-weight:800;
+      color:rgba(255,255,255,1);
+      opacity:1;
+    }
+
+    &__captureList {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .capture-list-enter-active, .capture-list-leave-active {
+      transition: all 1s;
+    }
+
+    .capture-list-enter, .capture-list-leave-to{
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    &__listItem {
+      width: .8rem;
+      height: 100%;
+      margin-right: .23rem;
+
+     
+    &:nth-child(7) {
+      margin-right: 0;
+    }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__right {
+      width: 4rem;
+      height: 100%;
+    }
+
+    &__flow {
+      height: 3.8rem;
+      margin-bottom: .17rem;
+      background-color: #fff;
+      border-radius:4px;
+      &:hover {
+        box-shadow: 0 0 150px rgba(0,0,0,.1);
+        z-index: 5;
+        transform: scale(1.02);
+        transition: all 0.5s;
+      }
+    }
+
+    &__statistics {
+      height: 3.8rem;
+      background-color: #fff;
+      border-radius:4px;
+      &:hover {
+        box-shadow: 0 0 150px rgba(0,0,0,.1);
+        z-index: 5;
+        transform: scale(1.02);
+        transition: all 0.5s;
+      }
+    }
+
+    &__card {
+
+      .title {
+        height: .6rem;
+        border-bottom: 1px solid #ccc;
+        padding-left: 20px;
+        line-height: .6rem;
+      }
+
+      .content {
+        height: 3rem;
+      }
+    }
   }
 }

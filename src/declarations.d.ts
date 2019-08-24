@@ -5,6 +5,8 @@ interface Window {
   config: {
     title: string;
     host: string;
+    subwayName: string;
+    roll: string;
   }
 }
 

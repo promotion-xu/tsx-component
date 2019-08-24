@@ -1,0 +1,18 @@
+@import "src/themes/mixins/mixins.scss";
+
+
+.counter {
+  white-space: nowrap;
+}
+
+.digit {
+  width: 0.4rem;
+  height: 0.58rem;
+  background-color: $--capture-count-background-color;
+  border: solid 0.02rem $--capture-count-border-color;
+  box-sizing: border-box;
+}
+
+.digit+.digit {
+  border-left-width: 0;
+}

@@ -1,0 +1,84 @@
+
+  @keyframes scrolling-up-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scrolling-up-out {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes scrolling-down-in {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scrolling-down-out {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  .digit img {
+    width: 100%;
+    height: auto;
+  }
+
+  .digit {
+    display: inline-block;
+    position: relative;
+    overflow-y: hidden;
+    width: .4rem;
+    height: .58rem;
+    background-color: rgba(42,164,255,.7);
+    border: .02rem solid hsla(0,0%,100%,.7);
+    box-sizing: border-box;
+  }
+
+  .digit img.dimmed {
+    opacity: 0.5;
+  }
+
+  .current {
+    display: inline-block;
+    position: relative;
+  }
+
+  .expect {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .scrolling-up .current {
+    animation: scrolling-up-out 0.9s forwards;
+  }
+
+  .scrolling-up .expect {
+    animation: scrolling-up-in 0.9s forwards;
+  }
+
+  .scrolling-down .current {
+    animation: scrolling-down-out 0.9s forwards;
+  }
+
+  .scrolling-down .expect {
+    animation: scrolling-down-in 0.9s forwards;
+  }
