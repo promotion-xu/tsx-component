@@ -29,6 +29,15 @@ yarn run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
+### CSS无外链模式
+1. 页面渲染速度更快
+2. 迁移与引用更方便
+3. 没有了跨域问题
+4. 没有合并的成本
+   
+
+
+
 WebSocket推送json对象格式：
 ```ts
 {
