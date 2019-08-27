@@ -24,8 +24,10 @@ require("echarts/lib/component/legend");
     }
   },
   watch: {
-    seriesData() {
-      this.drawBar();
+    seriesData(val: any) {
+      if (val) {
+        this.drawBar();
+      }
     }
   }
 })
@@ -36,7 +38,9 @@ export default class BarCharts extends Vue {
 
   render() {
     return (
-      <div style={{ width: '100%', height: '100%' }} ref="chart" class="chart"></div>
+      <div style={{ width: '100%', height: '100%' }} ref="chart" class={`chart}`}>
+      
+      </div>
     )
   }
 

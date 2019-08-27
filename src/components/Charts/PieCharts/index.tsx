@@ -21,6 +21,12 @@ require("echarts/lib/component/legend");
       default() {
         return []
       }
+    },
+    itemGap: {
+      type: Number,
+      default() {
+        return 20
+      }
     }
   },
   watch: {
@@ -32,6 +38,7 @@ require("echarts/lib/component/legend");
 export default class PieCharts extends Vue {
   readonly legendData: any;
   readonly seriesData: any;
+  readonly itemGap: number;
   myChart: any;
 
   render() {
@@ -59,7 +66,7 @@ export default class PieCharts extends Vue {
         orient: 'horizontal',
         x: 'center',
         y: 'bottom',
-        itemGap: 50,
+        itemGap: this.itemGap,
         itemWidth: 14,
         data: this.legendData
       },

@@ -15,6 +15,16 @@ module.exports = {
       .set('components', resolve('src/components'))
   },
 
+  pwa: {
+    iconPaths: {
+      favicon32: 'logo.png',
+      favicon16: 'logo.png',
+      appleTouchIcon: 'logo.png',
+      maskIcon: 'logo.png',
+      msTileImage: 'logo.png'
+    },
+  },
+
   configureWebpack: config => {
     // 忽略报错信息
     // https://cli.vuejs.org/zh/config/#configurewebpack

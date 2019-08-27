@@ -3,6 +3,9 @@ import LineCharts from '@/components/Charts/LineCharts';
 import PieCharts from '@/components/Charts/PieCharts';
 import BarCharts from '@/components/Charts/BarCharts';
 import Counter from '@/modules/Home/Counter';
+import {
+  Modal
+} from 'ant-design-vue';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import './index.scss';
@@ -26,12 +29,15 @@ interface ITarget {
 
 
 @Component({
+  components: {
+    'a-modal': Modal
+  },
   watch: {
-    // imageList(value: any) {
-    //   if (value.length > 7) {
-    //     this.imageList = this.imageList.slice(0, 7)
-    //   }
-    // }
+    imageList(value: any) {
+      if (value.length > 7) {
+        this.imageList = this.imageList.slice(0, 7)
+      }
+    }
   }
 })
 export default class Home extends Vue {
@@ -41,28 +47,23 @@ export default class Home extends Vue {
   imageList: string[] = [];
   stompClient: any;
   wsData: ITarget = {};
-  stationPieSeriesData: any = [
-    { value: this.wsData.enter, name: '入站人数' },
-    { value: this.wsData.leave, name: '出站人数' },
-  ];
-  floorPieSeriesData = [
-    { value: 12, name: 'B2层' },
-    { value: 87, name: 'B1层' },
-    { value: 87, name: '1层' },
-    { value: 47, name: '2层' },
-  ];
+  stationPieSeriesData: any = [];
+  floorPieSeriesData = [];
 
   floorPieLegendData = ['B2层', 'B1层', '1层', '2层'];
 
   BarYAxis: string[] = [];
   BarSeriesData: number[] = [];
 
+  visible: boolean = false;
+  bigImgUrl: string = '';
+
   render() {
     return (
       <div class="subway">
         <div class="subway__header">
           <img src={require('@/assets/images/home/subway__logo.png')} alt="" />
-          {title}
+          <span class="animated flash">{title}</span>
         </div>
 
         <div class="subway__content">
@@ -70,26 +71,33 @@ export default class Home extends Vue {
             <div class="subway__content__flow">
               <div class="subway__content__card">
                 <div class="title">
-                  <img src={require('@/assets/images/home/square.png')} alt="" /> 实时概况{'&'}进出站人数
+                  <span class="iconfont"></span> 实时概况{'&'}进出站人数
                 </div>
                 <div class="content">
-                  <PieCharts
-                    legendData={stationPieLegendData}
-                    seriesData={this.stationPieSeriesData}
-                  />
+                  {this.stationPieSeriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
+                    <PieCharts
+                      legendData={stationPieLegendData}
+                      seriesData={this.stationPieSeriesData}
+                      itemGap={50}
+                    />
+                  }
+
                 </div>
               </div>
             </div>
             <div class="subway__content__statistics">
               <div class="subway__content__card">
                 <div class="title">
-                  <img src={require('@/assets/images/home/square.png')} alt="" /> 楼层归档数量统计
+                  <span class="iconfont iconfont1"></span> 楼层归档数量统计
                 </div>
                 <div class="content">
-                  <PieCharts
-                    legendData={this.floorPieLegendData}
-                    seriesData={this.floorPieSeriesData}
-                  />
+                  {this.floorPieSeriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
+
+                    <PieCharts
+                      legendData={this.floorPieLegendData}
+                      seriesData={this.floorPieSeriesData}
+                    />
+                  }
                 </div>
               </div>
             </div>
@@ -119,7 +127,7 @@ export default class Home extends Vue {
                   {this.imageList.map((face: string, index: number) => {
                     return (
                       <li class="subway__content__listItem fl" key={index}>
-                        <img src={face} alt="" />
+                        <img onClick={() => this.showBigImg(face.bigStoragePath)} src={face.snapStoragePath} alt="" />
                       </li>
                     )
                   })}
@@ -132,27 +140,33 @@ export default class Home extends Vue {
             <div class="subway__content__flow">
               <div class="subway__content__card">
                 <div class="title">
-                  <img src={require('@/assets/images/home/square.png')} alt="" /> 实时统计客流量
+                  <span class="iconfont iconfont1"></span> 实时统计客流量
                 </div>
                 <div class="content">
-                  <LineCharts
-                    xData={this.xData}
-                    legendData={this.legendData}
-                    seriesData={this.seriesData}
-                  />
+                  {this.seriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
+                    <LineCharts
+                      xData={this.xData}
+                      legendData={this.legendData}
+                      seriesData={this.seriesData}
+                    />
+                  }
+
                 </div>
               </div>
             </div>
             <div class="subway__content__statistics">
               <div class="subway__content__card">
                 <div class="title">
-                  <img src={require('@/assets/images/home/square.png')} alt="" /> 抓拍区域统计
+                  <span class="iconfont"></span> 抓拍区域统计
                 </div>
                 <div class="content">
-                  <BarCharts
-                    yAxis={this.BarYAxis}
-                    seriesData={this.BarSeriesData}
-                  />
+                  {
+                    this.seriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
+                      <BarCharts
+                        yAxis={this.BarYAxis}
+                        seriesData={this.BarSeriesData}
+                      />
+                  }
                 </div>
               </div>
             </div>
@@ -182,6 +196,26 @@ export default class Home extends Vue {
     });
   }
 
+  showBigImg(url: string) {
+    Modal.info({
+      // title: 'This is a notification message',
+      content: (
+        <div>
+          <img src={url} alt=""/>
+        </div>
+      ),
+      onOk() {},
+    });
+  }
+
+  handleOk() {
+    this.visible = false;
+  }
+
+  handleCancel() {
+    this.visible = false;
+  }
+
   subscribe() {
     this.stompClient.subscribe("/topic/statistics", (data: any) => {
       let message = JSON.parse(data.body);
@@ -209,8 +243,8 @@ export default class Home extends Vue {
         this.xData.push(v);
         staticsData.push(hourStats[v])
       })
-      this.seriesData.push({name: '实时统计', data: staticsData })
-   
+      this.seriesData.push({ name: '实时统计', data: staticsData })
+
       // 抓拍区域统计
       this.BarYAxis = [];
       this.BarSeriesData = [];
@@ -221,7 +255,10 @@ export default class Home extends Vue {
 
       // 抓拍图片统计
       this.imageList = [];
-      this.imageList = urls;
+      this.imageList = this.imageList.concat(urls);
+      this.imageList.sort(() => {
+        return 0.5 - Math.random();
+      })
     });
   }
 
