@@ -14,6 +14,7 @@ const title = window.config.title;
 const subwayName = window.config.subwayName;
 const roll = window.config.roll;
 const isHQ = subwayName === '虹桥火车站' ? 'hq' : 'rm'
+const host = window.config.host;
 
 const stationPieLegendData = ['入站人数', '出站人数'];
 
@@ -185,7 +186,7 @@ export default class Home extends Vue {
   }
 
   connect() {
-    let socket = new SockJS('http://10.11.198.195:8001/ws/stomp');
+    let socket = new SockJS(host);
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({
       "userId": "1",
