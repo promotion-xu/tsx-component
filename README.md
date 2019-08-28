@@ -83,3 +83,4 @@ WebSocket推送json对象格式：
 	]
 }
 ```
+#### vue + tsx 模板
