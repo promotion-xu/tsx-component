@@ -15,6 +15,8 @@ const subwayName = window.config.subwayName;
 const roll = window.config.roll;
 const isHQ = subwayName === '虹桥火车站' ? 'hq' : 'rm'
 const host = window.config.host;
+const icon = require('@/assets/images/map/camera.png');
+const mapCenter = window.config.mapCenter;
 
 const stationPieLegendData = ['入站人数', '出站人数'];
 
@@ -58,6 +60,8 @@ export default class Home extends Vue {
 
   visible: boolean = false;
   bigImgUrl: string = '';
+
+  captures: any[] = [];
 
   render() {
     return (
@@ -116,8 +120,13 @@ export default class Home extends Vue {
             </div>
             <div class="subway__content__wrapper">
               <div
-                class={`subway__content__map__${isHQ}`}
+                class={`subway__content__map subway__content__map__${isHQ}`}
               >
+                <div class="gaode">
+                  <div id="gaode__container">
+
+                  </div>
+                </div>
               </div>
               <div class="subway__content__capture">
                 <span class="subway__content__realTime">实时抓拍</span>
@@ -182,7 +191,7 @@ export default class Home extends Vue {
   }
 
   mounted() {
-
+    this.initMap();
   }
 
   connect() {
@@ -195,6 +204,41 @@ export default class Home extends Vue {
     }, (frame: any) => {
       this.subscribe();
     });
+  }
+
+  initMap() {
+    let map = new AMap.Map('gaode__container', {
+      resizeEnable: true,
+      center: mapCenter,
+      zoom: 20
+    });
+
+    let markerArr = [];
+    markerArr = this.captures.map((v: any, i: number) => {
+      console.log('item', v);
+      return (
+        new AMap.Marker({
+          position: new AMap.LngLat(v.longitude, v.latitude),
+          // title: '',
+          content: '' +
+          `<div class="custom-content-marker"><img src="${icon}">${v.count}</div>`,
+          icon: icon
+        })
+      )
+    })
+    map.add(markerArr);
+
+    // let markerArr = [[121.3200380000, 31.1939870000], [116.4, 40], [116.41, 40]]
+    // let markerObj = markerArr.map((v: any, i: number) => {
+    //   return (
+    //     new AMap.Marker({
+    //       position: new AMap.LngLat(v[0], v[1]),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+    //       title: '北京',
+    //       icon: icon
+    //     })
+    //   )
+    // })
+    // this.clickMarker(markerObj);
   }
 
   showBigImg(url: string) {
@@ -221,7 +265,8 @@ export default class Home extends Vue {
     this.stompClient.subscribe("/topic/statistics", (data: any) => {
       let message = JSON.parse(data.body);
       this.wsData = message;
-      const { floors, exits, hourStats, enter, leave, urls } = message;
+      const { floors, exits, hourStats, enter, leave, urls, captures } = message;
+
       // 进站出站统计
       this.stationPieSeriesData = [
         { value: enter, name: '入站人数' },
@@ -260,6 +305,10 @@ export default class Home extends Vue {
       this.imageList.sort(() => {
         return 0.5 - Math.random();
       })
+
+      // 摄像机抓拍数据统计
+      this.captures = captures;
+      this.initMap();
     });
   }
 

@@ -7,6 +7,7 @@ interface Window {
     host: string;
     subwayName: string;
     roll: string;
+    mapCenter: any;
   }
 }
 

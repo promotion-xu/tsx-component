@@ -1,0 +1,29 @@
+[
+  {
+    "alarm": 200,
+    "capture": 1000,
+    "centerLatitude": "116.417707",
+    "centerLongitude": "39.927714",
+    "groupId": 1,
+    "groupName": "分组一",
+    "zoomLevel": 5
+  },
+  {
+    "alarm": 100,
+    "capture": 3000,
+    "centerLatitude": "116.417707",
+    "centerLongitude": "39.911555",
+    "groupId": 1,
+    "groupName": "分组二",
+    "zoomLevel": 5
+  },
+  {
+    "alarm": 500,
+    "capture": 6000,
+    "centerLatitude": "116.387807",
+    "centerLongitude": "39.908555",
+    "groupId": 1,
+    "groupName": "分组三",
+    "zoomLevel": 5
+  }
+]

@@ -76,15 +76,60 @@
       padding-top: .2rem;
     }
 
+    &__map {
+      .gaode {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        #gaode__container {
+          height: 100%;
+          width: 100%;
+        }
+        #gaode__container #drag_handle {
+          position: absolute !important;
+        }
+      }
+    }
+
+    .custom-content-marker {
+      position: relative;
+      width: 25px;
+      height: 34px;
+  }
+
+  .custom-content-marker img {
+      width: 100%;
+      height: 100%;
+  }
+
+  .custom-content-marker .close-btn {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      width: 15px;
+      height: 15px;
+      font-size: 12px;
+      background: #ccc;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 15px;
+      box-shadow: -1px 1px 1px rgba(10, 10, 10, .2);
+  }
+
+  .custom-content-marker .close-btn:hover{
+      background: #666;
+  }
+
     &__map__hq {
-      background: center url('../../assets/images/home/hongqiao__station.png');
+      // background: center url('../../assets/images/home/hongqiao__station.png');
       background-repeat: no-repeat;
       background-size: 100%;
       height: 80%;
     }
 
     &__map__rm {
-      background: center url('../../assets/images/home/peopleGroup.png');
+      // background: center url('../../assets/images/home/peopleGroup.png');
       background-repeat: no-repeat;
       background-size: '100%';
       height: 80%;

@@ -77,6 +77,11 @@ export const dyRoutes: RouterItem[] = [
     title: 'WebSocket',
     isMenu: true,
     component: () => import('@/modules/WebSocket')
+  },
+  {
+    path: '/WebGL',
+    title: 'WebGL',
+    component: () => import('@/modules/WebGL')
   }
 ]
 
