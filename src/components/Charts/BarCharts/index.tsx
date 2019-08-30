@@ -10,7 +10,14 @@ require("echarts/lib/component/legend");
   props: {
     yAxis: {
       type: Array,
-      required: true,
+      required: false,
+      default() {
+        return []
+      }
+    },
+    xAxis: {
+      type: Array,
+      required: false,
       default() {
         return []
       }
@@ -20,6 +27,13 @@ require("echarts/lib/component/legend");
       require: true,
       default() {
         return []
+      }
+    },
+    type: {
+      type: String,
+      required: false,
+      default() {
+        return 'horizontal'   // vertical(竖着)  |  horizontal(横着)
       }
     }
   },
@@ -33,7 +47,10 @@ require("echarts/lib/component/legend");
 })
 export default class BarCharts extends Vue {
   readonly yAxis: any;
+  readonly xAxis: any;
+  readonly type: any;
   readonly seriesData: any;
+
   myChart: any;
 
   render() {
@@ -52,39 +69,75 @@ export default class BarCharts extends Vue {
     var dom = this.$refs.chart;
 
     this.myChart = echarts.init(dom);
-    const option: any = {
-      color: ['#0293FF', '#1DC651'],
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      grid: {
-        left: '3%',
-        right: '8%',
-        bottom: '3%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'value',
-        boundaryGap: [0, 0.01]
-      },
-      yAxis: {
-        type: 'category',
-        data: this.yAxis
-      },
-      series: [
-        {
-          name: '抓拍统计',
-          type: 'bar',
-          barWidth: 15,
-          data: this.seriesData
-        }
-      ]
-    };
+    if(this.type === 'vertical') {
+      const option: any = {
+        color: ['#0293FF', '#1DC651'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '8%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          data: this.xAxis 
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            name: '抓拍统计',
+            type: 'bar',
+            barWidth: 15,
+            data: this.seriesData
+          }
+        ]
+      };
+      this.myChart.setOption(option);
+    } else {
+      const option: any = {
+        color: ['#0293FF', '#1DC651'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '8%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+          type: 'category',
+          data: this.yAxis
+        },
+        series: [
+          {
+            name: '抓拍统计',
+            type: 'bar',
+            barWidth: 15,
+            data: this.seriesData
+          }
+        ]
+      };
+      this.myChart.setOption(option);
 
-    this.myChart.setOption(option);
+    }
+   
+
     window.onresize = () => {
       this.myChart.resize();
     }
