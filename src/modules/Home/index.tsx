@@ -370,7 +370,6 @@ export default class Home extends Vue {
 
       // 抓拍图片统计
       this.imageList = [];
-      console.log("urls", urls);
       this.imageList = this.imageList.concat(urls);
       this.imageList.sort(() => {
         return 0.5 - Math.random();

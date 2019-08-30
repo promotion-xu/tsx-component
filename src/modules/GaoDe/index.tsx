@@ -53,6 +53,5 @@ export default class GaoDe extends Vue {
 
   showInfoM(e: any) {
     var text = '您在 [ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ] 的位置点击了marker！';
-    console.log('etxt', text);
   }
 }
