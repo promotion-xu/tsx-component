@@ -73,6 +73,12 @@ export const dyRoutes: RouterItem[] = [
     component: () => import('@/modules/Face/FaceDrawing')
   },
   {
+    path: '/face/faceDetection',
+    title: '活体识别',
+    isMenu: true,
+    component: () => import('@/modules/Face/FaceDetection')
+  },
+  {
     path: '/ws',
     title: 'WebSocket',
     isMenu: true,

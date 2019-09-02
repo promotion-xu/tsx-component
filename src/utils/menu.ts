@@ -69,6 +69,11 @@ export const routes: RouterItem[] = [
         path: '/face/faceDrawing',
         title: '人脸标注',
         isMenu: true
+      },
+      {
+        path: '/face/faceDetection',
+        title: '活体识别',
+        isMenu: true
       }
     ]
   },
