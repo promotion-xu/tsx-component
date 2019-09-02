@@ -16,13 +16,13 @@ import '@/style/index.scss';
 })
 export default class App extends Vue {
   render() {
-    // if (['/login'].indexOf(this.$route.path) > -1) {
+    if (['/login'].indexOf(this.$route.path) > -1) {
       return (
         <div id="app-one">
           <router-view />
         </div>
       )
-    // }
+    }
     return (
       <div id='app'>
         <a-locale-provider locale={zh_CN}>
