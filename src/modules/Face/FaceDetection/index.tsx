@@ -50,7 +50,7 @@ export default class FaceDetection extends Vue {
                 class="phone-operate"
                 onMousedown={this.onMousedown}
                 onMouseup={this.onMousedown}
-                
+
               >{this.btnText}</div>
               <video ref="video" width="200"></video>
             </div>
@@ -70,7 +70,6 @@ export default class FaceDetection extends Vue {
       this.stream = stream;
       this.bindEvents();
     }, error => {
-      alert('出错，请确保已允许浏览器获取音视频权限');
     });
   }
 
