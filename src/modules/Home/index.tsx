@@ -10,13 +10,13 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import './index.scss';
 
-const title = window.config.title;
-const subwayName = window.config.subwayName;
-const roll = window.config.roll;
+const title = (window as MyWindow).config.title;
+const subwayName = (window as MyWindow).config.subwayName;
+const roll = (window as MyWindow).config.roll;
+const host = (window as MyWindow).config.host;
+const map = (window as MyWindow).config.map;
 const isHQ = subwayName === '虹桥火车站' ? 'hq' : 'zs'
-const host = window.config.host;
 const icon = require('@/assets/images/map/camera.png');
-const map = window.config.map;
 
 
 const stationPieLegendData = ['入站人数', '出站人数'];
@@ -250,7 +250,7 @@ export default class Home extends Vue {
   }
 
   addMarker() {
-    this.map.remove(this.markerArr);
+    this.map && this.map.remove(this.markerArr);
     this.markerArr = this.captures.map((v: any, i: number) => {
       return (
         new AMap.Marker({
@@ -262,7 +262,7 @@ export default class Home extends Vue {
         })
       )
     })
-    this.map.add(this.markerArr);
+    this.map && this.map.add(this.markerArr);
   }
 
   showBigImg(url: string) {
