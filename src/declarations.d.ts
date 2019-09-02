@@ -1,12 +1,16 @@
 
 
-interface Window {
+interface MyWindow extends Window {
 
   config: {
     title: string;
     host: string;
     subwayName: string;
     roll: string;
+    map: {
+      mapCenter: any;
+      net: string;
+    }
   }
 }
 

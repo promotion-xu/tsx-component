@@ -10,11 +10,14 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import './index.scss';
 
-const title = window.config.title;
-const subwayName = window.config.subwayName;
-const roll = window.config.roll;
-const isHQ = subwayName === '虹桥火车站' ? 'hq' : 'rm'
-const host = window.config.host;
+const title = (window as MyWindow).config.title;
+const subwayName = (window as MyWindow).config.subwayName;
+const roll = (window as MyWindow).config.roll;
+const host = (window as MyWindow).config.host;
+const map = (window as MyWindow).config.map;
+const isHQ = subwayName === '虹桥火车站' ? 'hq' : 'zs'
+const icon = require('@/assets/images/map/camera.png');
+
 
 const stationPieLegendData = ['入站人数', '出站人数'];
 
@@ -26,6 +29,7 @@ interface ITarget {
   floors?: object;
   hourStats?: object;
   urls?: any;
+  captures?: any;
 }
 
 
@@ -49,15 +53,21 @@ export default class Home extends Vue {
   stompClient: any;
   wsData: ITarget = {};
   stationPieSeriesData: any = [];
-  floorPieSeriesData = [];
+  floorSeriesData = [];
 
-  floorPieLegendData = ['B2层', 'B1层', '1层', '2层'];
+  floorLegendData = ['B2层', 'B1层', '1层', '2层'];
 
   BarYAxis: string[] = [];
   BarSeriesData: number[] = [];
 
   visible: boolean = false;
   bigImgUrl: string = '';
+
+  captures: any[] = [];
+  map: any;
+  markerArr: any[] = [];
+
+  markersArr: any[] = [];
 
   render() {
     return (
@@ -92,11 +102,11 @@ export default class Home extends Vue {
                   <span class="iconfont iconfont1"></span> 楼层归档数量统计
                 </div>
                 <div class="content">
-                  {this.floorPieSeriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
-
-                    <PieCharts
-                      legendData={this.floorPieLegendData}
-                      seriesData={this.floorPieSeriesData}
+                  {this.floorSeriesData.length === 0 ? <span class="noContent">暂无推送数据</span> :
+                    <BarCharts
+                      xAxis={this.floorLegendData}
+                      seriesData={this.floorSeriesData}
+                      type={'vertical'}
                     />
                   }
                 </div>
@@ -116,8 +126,40 @@ export default class Home extends Vue {
             </div>
             <div class="subway__content__wrapper">
               <div
-                class={`subway__content__map__${isHQ}`}
+                class={`subway__content__map subway__content__map__${isHQ}`}
               >
+                {map.net === 'online' ?
+                  <div class="gaode">
+                    <div id="gaode__container">
+                    </div>
+                  </div>
+                  :
+                  <div class="subway__content__map__markers">
+                    {this.markersArr.length &&
+                      this.markersArr.map((item, index) => {
+                        return (
+                          <div
+                            class="subway__content__map__marker"
+                            style={{
+                              left: item.left + 'rem',
+                              top: item.top + 'rem',
+
+                            }}
+                          >
+                            <img
+                              src={require('@/assets/images/map/marker.png')}
+
+                            />
+                            <span class="enter">{index + 1}</span>
+                            {item[`${index + 1}号口`]}
+                          </div>
+
+                        )
+                      })
+                    }
+                  </div>
+                }
+
               </div>
               <div class="subway__content__capture">
                 <span class="subway__content__realTime">实时抓拍</span>
@@ -182,7 +224,9 @@ export default class Home extends Vue {
   }
 
   mounted() {
-
+    if (map.net === 'online') {
+      this.initMap();
+    }
   }
 
   connect() {
@@ -197,15 +241,39 @@ export default class Home extends Vue {
     });
   }
 
+  initMap() {
+    this.map = new AMap.Map('gaode__container', {
+      resizeEnable: true,
+      center: map.mapCenter,
+      zoom: 20
+    });
+  }
+
+  addMarker() {
+    this.map && this.map.remove(this.markerArr);
+    this.markerArr = this.captures.map((v: any, i: number) => {
+      return (
+        new AMap.Marker({
+          position: new AMap.LngLat(v.longitude, v.latitude),
+          // title: '',
+          content: '' +
+            `<div class="custom-content-marker"><img src="${icon}">${v.count}</div>`,
+          icon: icon
+        })
+      )
+    })
+    this.map && this.map.add(this.markerArr);
+  }
+
   showBigImg(url: string) {
     Modal.info({
       // title: 'This is a notification message',
       content: (
         <div>
-          <img src={url} alt=""/>
+          <img src={url} alt="" />
         </div>
       ),
-      onOk() {},
+      onOk() { },
     });
   }
 
@@ -221,7 +289,8 @@ export default class Home extends Vue {
     this.stompClient.subscribe("/topic/statistics", (data: any) => {
       let message = JSON.parse(data.body);
       this.wsData = message;
-      const { floors, exits, hourStats, enter, leave, urls } = message;
+      const { floors, exits, hourStats, enter, leave, urls, captures } = message;
+
       // 进站出站统计
       this.stationPieSeriesData = [
         { value: enter, name: '入站人数' },
@@ -229,13 +298,13 @@ export default class Home extends Vue {
       ];
 
       // 楼层统计
-      this.floorPieSeriesData = [];
-      this.floorPieLegendData = [];
+      this.floorSeriesData = [];
+      this.floorLegendData = [];
       Object.keys(floors).forEach((v) => {
-        this.floorPieSeriesData.push({ value: floors[v], name: v });
-        this.floorPieLegendData.push(v);
+        this.floorSeriesData.push({ value: floors[v], name: v });
+        this.floorLegendData.push(v);
       })
-
+      
       // 实时统计
       let staticsData: any = [];
       this.seriesData = [];
@@ -245,14 +314,59 @@ export default class Home extends Vue {
         staticsData.push(hourStats[v])
       })
       this.seriesData.push({ name: '实时统计', data: staticsData })
-
       // 抓拍区域统计
       this.BarYAxis = [];
       this.BarSeriesData = [];
-      Object.keys(exits).forEach((v) => {
+      this.markersArr = [];
+      Object.keys(exits).forEach((v, i) => {
         this.BarYAxis.push(v);
-        this.BarSeriesData.push(exits[v])
+        this.BarSeriesData.push(exits[v]);
+
+        let obj: any = {};
+        obj[v] = exits[v];
+        this.markersArr.push(obj);
       })
+      
+      if (isHQ === 'hq') {
+        this.markersArr = this.markersArr.slice(0, 4);
+        this.markersArr[0]['left'] = 6.5;
+        this.markersArr[0]['top'] = 2.2;
+        this.markersArr[1]['left'] = 6.5;
+        this.markersArr[1]['top'] = 2.8;
+        this.markersArr[2]['left'] = 1.2;
+        this.markersArr[2]['top'] = 1.9;
+        this.markersArr[3]['left'] = 1;
+        this.markersArr[3]['top'] = 2.6;
+      } else {
+        this.markersArr[0]['left'] = 1;
+        this.markersArr[0]['top'] = 2;
+        this.markersArr[1]['left'] = 1.8;
+        this.markersArr[1]['top'] = 2;
+        this.markersArr[2]['left'] = 1.2;
+        this.markersArr[2]['top'] = 1.5;
+        this.markersArr[3]['left'] = 1;
+        this.markersArr[3]['top'] = 2.6;
+        this.markersArr[4]['left'] = 6.4;
+        this.markersArr[4]['top'] = 1.4;
+        this.markersArr[5]['left'] = 4.3;
+        this.markersArr[5]['top'] = 2.2;
+        this.markersArr[6]['left'] = 3.2;
+        this.markersArr[6]['top'] = 2.5;
+        this.markersArr[7]['left'] = 1.7;
+        this.markersArr[7]['top'] = 2.8;
+        this.markersArr[8]['left'] = 2.8;
+        this.markersArr[8]['top'] = 2.8;
+        // this.markersArr[9]['left'] = 2.9;
+        // this.markersArr[9]['top'] = 2.9;
+        // this.markersArr[10]['left'] = 3;
+        // this.markersArr[10]['top'] = 3;
+      }
+
+
+      // left:2~5rem    top: 2~4rem
+
+      // [{1号口: 548, left: 2, top: 3,}, {}, {}, {}, {}]
+
 
       // 抓拍图片统计
       this.imageList = [];
@@ -260,6 +374,10 @@ export default class Home extends Vue {
       this.imageList.sort(() => {
         return 0.5 - Math.random();
       })
+
+      // 摄像机抓拍数据统计
+      this.captures = captures;
+      this.addMarker();
     });
   }
 

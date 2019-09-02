@@ -82,6 +82,12 @@ export const routes: RouterItem[] = [
     title: 'WebSocket',
     icon: '',
     isMenu: true
+  },
+  {
+    path: '/WebGL',
+    title: 'WebGL',
+    icon: '',
+    isMenu: true
   }
 ]
 

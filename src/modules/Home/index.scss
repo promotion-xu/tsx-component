@@ -76,18 +76,70 @@
       padding-top: .2rem;
     }
 
+    &__map {
+      .gaode {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        #gaode__container {
+          height: 100%;
+          width: 100%;
+
+          > a {
+            display: none !important;
+          }
+          .amap-copyright {
+            display: none !important;
+            visibility: hidden !important;
+          }
+        }
+        #gaode__container #drag_handle {
+          position: absolute !important;
+        }
+      }
+
+      &__markers {
+        position: relative;
+      }
+
+      &__marker {
+        position: absolute;
+
+        img {
+          width: 25px;
+        }
+
+        .enter {
+          position: absolute;
+          left: 7px;
+          top: 0px;
+        }
+      }
+    }
+
     &__map__hq {
-      background: center url('../../assets/images/home/hongqiao__station.png');
+      background: center url('../../assets/images/map/hq-station.png');
       background-repeat: no-repeat;
       background-size: 100%;
       height: 80%;
     }
 
-    &__map__rm {
-      background: center url('../../assets/images/home/peopleGroup.png');
+    &__map__zs {
+      background: center url('../../assets/images/map/zhongshan-park.png');
       background-repeat: no-repeat;
-      background-size: '100%';
+      background-size: 100%;
       height: 80%;
+    }
+
+    .custom-content-marker {
+      position: relative;
+      width: 25px;
+      height: 34px;
+    }
+
+    .custom-content-marker img {
+        width: 100%;
+        height: 100%;
     }
 
     &__capture {
@@ -181,7 +233,7 @@
         padding-left: 20px;
         line-height: .6rem;
         position: relative;
-        padding-left: .3rem;
+        padding-left: .4rem;
 
         .iconfont {
           width:15px;

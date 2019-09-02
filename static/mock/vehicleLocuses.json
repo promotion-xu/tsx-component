@@ -1,0 +1,73 @@
+[
+	{
+		"bigImageSerial": "video_automobile_panoramic/20190107-1f1e350d-0a580ae94026-0003bc40-000436c0",
+		"bigImageUrl": "http://10.9.242.76:30080/components/osg-default/_/video_automobile_panoramic/20190107-1f1e350d-0a580ae94026-0003bc40-000436c0",
+		"cameraIdx": 55,
+		"captureTime": "01-07 15:09:36",
+		"imageSerial": "video_automobile_cropped/20190107-1f1ecb82-0a580ae94026-00005850-00007078",
+		"imageUrl": "http://10.9.242.76:30080/components/osg-default/_/video_automobile_cropped/20190107-1f1ecb82-0a580ae94026-00005850-00007078",
+		"latitude": 22.494797,
+		"longitude": 113.92023,
+		"objectPosition": {
+			"end": {
+				"x": 1260,
+				"y": 1091
+			},
+			"height": 330,
+			"start": {
+				"x": 988,
+				"y": 761
+			},
+			"width": 272
+		},
+		"plateNo": "浙A206E8",
+		"regionId": 1,
+		"resourceTypeId": 2,
+		"sequence": 0,
+		"time": 1546844976000,
+		"trackId": "570",
+		"vehicleBrand": "大众",
+		"vehicleClass": "5",
+		"vehicleColor": "1",
+		"vehicleModel": "大众-高尔夫",
+		"videoId": 100055,
+		"videoName": "wjj_v3",
+		"videoSerial": "1_55",
+		"matched": true
+	},{
+		"bigImageSerial": "video_automobile_panoramic/20190107-1f1e350d-0a580ae94026-0003bc40-000436c0",
+		"bigImageUrl": "http://10.9.242.76:30080/components/osg-default/_/video_automobile_panoramic/20190107-1f1e350d-0a580ae94026-0003bc40-000436c0",
+		"cameraIdx": 55,
+		"captureTime": "01-07 15:09:36",
+		"imageSerial": "video_automobile_cropped/20190107-1f1ecb82-0a580ae94026-00005850-00007078",
+		"imageUrl": "http://10.9.242.76:30080/components/osg-default/_/video_automobile_cropped/20190107-1f1ecb82-0a580ae94026-00005850-00007078",
+		"latitude": 22.594797,
+		"longitude": 113.20023,
+		"objectPosition": {
+			"end": {
+				"x": 1260,
+				"y": 1091
+			},
+			"height": 330,
+			"start": {
+				"x": 988,
+				"y": 761
+			},
+			"width": 272
+		},
+		"plateNo": "浙A206E8",
+		"regionId": 1,
+		"resourceTypeId": 2,
+		"sequence": 0,
+		"time": 1546844976000,
+		"trackId": "570",
+		"vehicleBrand": "大众",
+		"vehicleClass": "5",
+		"vehicleColor": "1",
+		"vehicleModel": "大众-高尔夫",
+		"videoId": 100055,
+		"videoName": "wjj_v3",
+		"videoSerial": "1_55",
+		"matched": true
+	}
+]

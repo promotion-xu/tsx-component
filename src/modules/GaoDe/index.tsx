@@ -40,17 +40,8 @@ export default class GaoDe extends Vue {
     //   })
     // }
 
-    let markerObj = markerArr.map((v: any, i: number) => {
-      return (
-        new AMap.Marker({
-          position: new AMap.LngLat(v[0], v[1]),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-          title: '北京',
-          icon: icon
-        })
-      )
-    })
-    map.add(markerObj);
-    this.clickMarker(markerObj);
+   
+    
 
   }
 
@@ -62,6 +53,5 @@ export default class GaoDe extends Vue {
 
   showInfoM(e: any) {
     var text = '您在 [ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ] 的位置点击了marker！';
-    console.log('etxt', text);
   }
 }
