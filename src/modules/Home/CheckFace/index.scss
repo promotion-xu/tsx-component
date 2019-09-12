@@ -1,0 +1,268 @@
+.check__face {
+  height: 100%;
+}
+.CheckFace {
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(0,0,0,.6);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: -.8rem;
+    &-container {
+        width: 9.58rem;
+        height: 8.37rem;
+    }
+    &-header {
+        width: 100%;
+        height: .53rem;
+        background-color: #0E9CFE ;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &-title {
+        color: #fff;
+        margin-left: 20px;
+    }
+    &-closeBtn {
+        margin-right: 20px;
+        width: 20px;
+        height: 20px;
+        // background-image: url('../../../assets/删除\ 关闭\ 取消\ 无边框@2x.png');
+        background-image: url('../../../assets/images/LivingCheck/删除\ 关闭\ 取消\ 无边框@2x.png');
+        background-size: 100% 100%;
+    }
+    &-video {
+        position: relative;
+        width: 9.58rem;
+        height: 7.84rem;
+        background-color: #fff; 
+        overflow: hidden;
+        .record-video {
+            .video {
+                width:  9.58rem;
+                height: 7.84rem;
+                object-fit: fill;
+            }
+            .record-btn {
+                width: vm(200);
+                height: vm(52);
+                background:rgba(62,139,244,0.81);
+                border:1px solid;
+                border-image:linear-gradient(226deg, rgba(180,202,255,0.5), rgba(185,204,249,0), rgba(104,158,251,1)) 1 1;
+                margin-top: vm(-114);
+                z-index: 1000;
+                font-size: 20px;
+            }
+        }
+    }
+    &-success, &-loading {
+        width: 9.58rem;
+        height: 7.84rem;
+        background-color: #1D4072;
+        display: flex;
+        flex-direction: column;
+        -ms-flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        align-content: flex-start;
+        .success-img {
+            width: 180px;
+            height: 182px;
+            background-image: url('../../../assets/images/LivingCheck/验证成功@2x.png');
+            background-size: 100% 100%;
+        }
+        .loading-img {
+            position: relative;
+            width: 196px;
+            height: 196px;
+            .img1 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .img2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 116px;
+                height: 116px;
+            }
+            .img3 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 110px;
+                height: 112px;
+            }
+        }
+        .title {
+            font-size: 20px;
+            color: #A7C3DA;
+            margin-top: 64px;
+        }
+    }
+    &-tip {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 99;
+        width: 200px;
+        height: 46px;
+        border-radius:2px;
+        font-size: 20px;
+        color: #fff;
+        line-height: 46px;
+        margin-top: 27px;
+        // overflow-y: hidden;
+        // box-shadow: 49px 0 20px 0 rgba(3,70,130,.3);
+        &::before {
+            content: '';
+            display: block;
+            z-index: -1;
+            width: 160%;
+            height: 100%;
+            background-image:radial-gradient(circle, rgba(3,70,130,.8), rgba(3,70,130,0));
+            margin-left: -50px;
+        }
+        span {
+            position: absolute;
+            top: 0;
+        }
+    }
+    &-mask {
+        width: 4.5rem;
+        height:  4.5rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        // border: 1000px solid rgba($color: #000000, $alpha: .7);
+        box-shadow: rgba(0,0,0,.7) 0 0 0 1366px;
+    }
+    &-face-container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        width: 4.74rem;
+        height: 4.74rem;
+        background-image: url('../../../assets/images/LivingCheck/人脸识别框@2x.png');
+        background-size: 100% 100%;
+        .corner {
+            position: absolute;
+            width: .3rem;
+            height: .3rem;
+            border-style: solid;
+            border-color: #00B4FF;
+            &.top {
+                border-bottom: 4px;
+                border-right: 4px;
+                top: -10px;
+                left: -10px;
+                &.topMove {
+                    animation: TopMove 3s infinite;
+                }
+            }
+            &.right {
+                border-bottom: 4px;
+                border-left: 4px;
+                top: -10px;
+                right: -10px;
+                &.rightMove {
+                    animation: RightMove 3s infinite;
+                }
+            }
+            &.bottom {
+                border-top: 4px;
+                border-left: 4px;
+                bottom: -10px;
+                right: -10px;
+                &.bottomMove {
+                    animation: BottomMove 3s infinite;
+                }
+            }
+            &.left {
+                border-top: 4px;
+                border-right: 4px;
+                bottom: -10px;
+                left: -10px;
+                &.leftMove {
+                    animation: LeftMove 3s infinite;
+                }
+            }
+        }
+    }
+    @keyframes TopMove {
+        0% {
+            
+            top: -10px;
+            left: -10px;
+        }
+        50% {
+            top: -20px;
+            left: -20px;
+        }
+        100% {
+            top: -10px;
+            left: -10px;
+        }
+    }
+    @keyframes RightMove {
+        0% {
+            
+            top: -10px;
+            right: -10px;
+        }
+        50% {
+            top: -20px;
+            right: -20px;
+        }
+        100% {
+            top: -10px;
+            right: -10px;
+        }
+    }
+    @keyframes BottomMove {
+        0% {
+            
+            bottom: -10px;
+            right: -10px;
+        }
+        50% {
+            bottom: -20px;
+            right: -20px;
+        }
+        100% {
+            bottom: -10px;
+            right: -10px;
+        }
+    }
+    @keyframes LeftMove {
+        0% {
+            
+            bottom: -10px;
+            left: -10px;
+        }
+        50% {
+            bottom: -20px;
+            left: -20px;
+        }
+        100% {
+            bottom: -10px;
+            left: -10px;
+        }
+    }
+
+}
