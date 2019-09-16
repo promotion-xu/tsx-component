@@ -28,7 +28,7 @@ export default class App extends Vue {
         <a-locale-provider locale={zh_CN}>
           <div class="gateway-main">
             <div class="gateway-sidebar">
-              <Sidebar />
+              {/* <Sidebar /> */}
             </div>
             <div class="gateway-content">
               <div class="page-wrap">
