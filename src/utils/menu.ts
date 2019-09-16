@@ -55,6 +55,20 @@ export const routes: RouterItem[] = [
     ]
   },
   {
+    path: '/threeJS',
+    title: 'ThreeJS',
+    icon: '',
+    isMenu: true,
+    subs: [
+      {
+        path: '/threeJS/threeJs-1',
+        title: 'ThreeJs-1',
+        isMenu: true,
+        icon: ''
+      }
+    ]
+  },
+  {
     path: '/faceDetect',
     title: '人脸定位框选',
     icon: '',

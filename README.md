@@ -84,3 +84,6 @@ WebSocket推送json对象格式：
 }
 ```
 #### vue + tsx 模板
+
+
+### components放入组件, 路由加入页面引入组件看效果

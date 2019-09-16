@@ -21,6 +21,14 @@ export const dyRoutes: RouterItem[] = [
     isMenu: true,
   },
   {
+    path: '/threeJS',
+    title: 'ThreeJs',
+    name: 'threeD',
+    icon: '',
+    component: () => import('@/modules/ThreeJs/ThreeJs-1'),
+    isMenu: true,
+  },
+  {
     path: '/gaode',
     name: 'gaode',
     title: '高德',
