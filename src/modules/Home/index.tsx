@@ -17,7 +17,7 @@ import './index.scss';
 export default class Home extends Vue {
 
   idNumber: string = '';
-  isShowVideo: boolean = false;
+  isShowVideo: boolean = true;
 
   render() {
     return (

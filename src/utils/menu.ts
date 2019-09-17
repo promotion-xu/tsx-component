@@ -88,6 +88,12 @@ export const routes: RouterItem[] = [
     title: 'WebGL',
     icon: '',
     isMenu: true
+  },
+  {
+    path: '/LivingCheck',
+    title: '活体检测',
+    icon: '',
+    isMenu: true
   }
 ]
 

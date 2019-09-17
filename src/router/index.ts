@@ -88,13 +88,18 @@ export const dyRoutes: RouterItem[] = [
     path: '/WebGL',
     title: 'WebGL',
     component: () => import('@/modules/WebGL')
+  },
+  {
+    path: '/LivingCheck',
+    title: '活体检测',
+    component: () => import("@/modules/LivingCheck")
   }
 ]
 
 const baseRoute = [
   { 
     path: '/', 
-    redirect: '/home', 
+    redirect: '/LivingCheck', 
   },
   {
     path: '/login',
