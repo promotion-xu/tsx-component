@@ -23,6 +23,12 @@ export const routes: RouterItem[] = [
     isMenu: true,
   },
   {
+    path: '/livingCheck',
+    title: '活体识别',
+    icon: '',
+    isMenu: true
+  },
+  {
     path: '/threeD',
     title: '3D视图',
     icon: '',

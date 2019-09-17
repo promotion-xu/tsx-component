@@ -22,8 +22,16 @@ export const dyRoutes: RouterItem[] = [
   },
   {
     path: '/threeJS',
-    title: 'ThreeJs',
-    name: 'threeD',
+    title: 'ThreeJS',
+    name: 'threeJS',
+    icon: '',
+    component: () => import('@/modules/ThreeJs/ThreeJs-1'),
+    isMenu: true,
+  },
+  {
+    path: '/threeJS/threeJs-1',
+    title: 'ThreeJS-1',
+    name: 'threeJS-1',
     icon: '',
     component: () => import('@/modules/ThreeJs/ThreeJs-1'),
     isMenu: true,
@@ -35,6 +43,14 @@ export const dyRoutes: RouterItem[] = [
     icon: '',
     isMenu: true,
     component: () => import('@/modules/GaoDe')
+  },
+  {
+    path: '/livingCheck',
+    title: '活体识别',
+    name: 'livingCheck',
+    isMenu: true,
+    icon: '',
+    component: () => import('@/modules/LivingCheck')
   },
   {
     path: '/threeD/demo1',
