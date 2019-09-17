@@ -98,7 +98,6 @@ export default class CheckFace extends Vue {
   recordStopped(videoFile: any) {
     this.isStart = false
     this.loading = true;
-    console.log('videoFile', videoFile);
     // request[LIVENESS]({ videoFile }).then(res => {
     //   const response = res.toObject()
     //   if (response.isPassed) {

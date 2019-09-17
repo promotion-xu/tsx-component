@@ -23,6 +23,12 @@ export const routes: RouterItem[] = [
     isMenu: true,
   },
   {
+    path: '/livingCheck',
+    title: '活体识别',
+    icon: '',
+    isMenu: true
+  },
+  {
     path: '/threeD',
     title: '3D视图',
     icon: '',
@@ -51,6 +57,20 @@ export const routes: RouterItem[] = [
         title: 'ThingJs-demo4',
         isMenu: true,
         icon: '',
+      }
+    ]
+  },
+  {
+    path: '/threeJS',
+    title: 'ThreeJS',
+    icon: '',
+    isMenu: true,
+    subs: [
+      {
+        path: '/threeJS/threeJs-1',
+        title: 'ThreeJs-1',
+        isMenu: true,
+        icon: ''
       }
     ]
   },

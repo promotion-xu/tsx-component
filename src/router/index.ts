@@ -21,12 +21,36 @@ export const dyRoutes: RouterItem[] = [
     isMenu: true,
   },
   {
+    path: '/threeJS',
+    title: 'ThreeJS',
+    name: 'threeJS',
+    icon: '',
+    component: () => import('@/modules/ThreeJs/ThreeJs-1'),
+    isMenu: true,
+  },
+  {
+    path: '/threeJS/threeJs-1',
+    title: 'ThreeJS-1',
+    name: 'threeJS-1',
+    icon: '',
+    component: () => import('@/modules/ThreeJs/ThreeJs-1'),
+    isMenu: true,
+  },
+  {
     path: '/gaode',
     name: 'gaode',
     title: '高德',
     icon: '',
     isMenu: true,
     component: () => import('@/modules/GaoDe')
+  },
+  {
+    path: '/livingCheck',
+    title: '活体识别',
+    name: 'livingCheck',
+    isMenu: true,
+    icon: '',
+    component: () => import('@/modules/LivingCheck')
   },
   {
     path: '/threeD/demo1',
@@ -88,11 +112,6 @@ export const dyRoutes: RouterItem[] = [
     path: '/WebGL',
     title: 'WebGL',
     component: () => import('@/modules/WebGL')
-  },
-  {
-    path: '/LivingCheck',
-    title: '活体检测',
-    component: () => import("@/modules/LivingCheck")
   }
 ]
 

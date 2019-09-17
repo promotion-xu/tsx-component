@@ -26,6 +26,5 @@ export default class LivingCheck extends Vue {
 
   handleSubmit(val: any) {
     this.visible = false;
-    console.log('val', val);
   }
 }
