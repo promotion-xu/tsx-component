@@ -1,11 +1,8 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CheckFace from '@/components/CheckFace';
-import {
-  Icon,
-} from 'ant-design-vue'
+
 @Component({
   components: {
-    'a-icon': Icon
   }
 })
 export default class LivingCheck extends Vue {
@@ -19,13 +16,11 @@ export default class LivingCheck extends Vue {
           onClose={() => this.visible = false}
           onSubmit={this.handleSubmit}
         />
-        <a-icon type='search'></a-icon>
       </div>
     )
   }
 
   handleSubmit(val: any) {
     this.visible = false;
-    console.log('val', val);
   }
 }

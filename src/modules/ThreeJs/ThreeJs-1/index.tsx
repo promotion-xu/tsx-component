@@ -49,7 +49,6 @@ export default class ThreeJS extends Vue {
 
       var line = new THREE.Line(geometry, material, THREE.LinePieces);
       this.scene.add(line);
-      console.log('line', line);
     }
     
     this.initThree();
