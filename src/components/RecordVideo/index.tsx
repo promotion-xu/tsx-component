@@ -62,7 +62,7 @@ export default class RecordVideo extends Vue {
   }
 
 
-  
+
 
 
   startVideo() {
@@ -80,7 +80,7 @@ export default class RecordVideo extends Vue {
           video: true
         };
         let localMediaStream;
-  
+
         navigator.mediaDevices.getUserMedia(vconstraints)
           .then((mediaStream) => {
             localMediaStream = mediaStream;
@@ -103,7 +103,6 @@ export default class RecordVideo extends Vue {
                 const buffer = this.result;
                 const uintArray = new Uint8Array(buffer as ArrayBuffer);
                 that.videoFile = uintArray
-
                 if (!that.loading && that.videoFile.length > 0) {
                   that.$props.recordStopped(uintArray);
                   that.mediaRecorder = null
@@ -116,42 +115,8 @@ export default class RecordVideo extends Vue {
 
           })
           .catch(function (err) {
-            console.log(err.name + ": " + err.message);
           });
 
-        // this.video.srcObject = stream;
-        // this.video.onloadedmetadata = function (e: any) {
-          // this.video.play();
-        // }
-        // const chunks: any[] = [];
-
-        // 通过 MediaRecorder 记录获取到的媒体流
-        // @ts-ignore
-        // this.mediaRecorder = new MediaRecorder(stream);
-
-        // this.mediaRecorder.ondataavailable = function (e: any) {
-        //   chunks.push(e.data);
-        // };
-        // const that = this;
-        // this.mediaRecorder.onstop = ((e: any) => {
-        //   this.recorderFile = new Blob(chunks, { type: 'video/mp4' });
-        //   const videoURL = new FileReader();
-        //   videoURL.readAsArrayBuffer(this.recorderFile);
-
-        //   videoURL.onload = function () {
-        //     const buffer = this.result;
-        //     const uintArray = new Uint8Array(buffer as ArrayBuffer);
-        //     that.videoFile = uintArray
-
-        //     if (!that.loading && that.videoFile.length > 0) {
-        //       that.$props.recordStopped(uintArray);
-        //       that.mediaRecorder = null
-        //     }
-        //   };
-        // }).bind(this);
-
-        // Auto start recording
-        // this.startRecording();
       }
     }).bind(this), (val) => { this.disabledStatus = val });
   }

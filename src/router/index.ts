@@ -118,7 +118,7 @@ export const dyRoutes: RouterItem[] = [
 const baseRoute = [
   { 
     path: '/', 
-    redirect: '/home', 
+    redirect: '/LivingCheck', 
   },
   {
     path: '/login',
