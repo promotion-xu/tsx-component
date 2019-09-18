@@ -44,6 +44,7 @@ export default class CheckFace extends Vue {
         width={'8rem'}
         onOk={this.handleSubmit}
         onCancel={this.handleClose}
+        maskClosable={false}
         footer={null}
       >
         <div class='CheckFace'>
