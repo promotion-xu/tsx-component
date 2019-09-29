@@ -1,23 +1,23 @@
-import { Vue, Component } from 'vue-property-decorator';
+import {
+  Vue, Component
+} from 'vue-property-decorator';
 import * as THREE from 'three';
 import { WebGLRenderer } from 'three';
-import Demo1 from './Demo1';
-import Demo2 from './Demo2';
-import Demo3 from './Demo3';
-import {
-  Tabs
-} from 'ant-design-vue';
-import './index.scss';
-
-const { TabPane } = Tabs;
-
 @Component({
-  components: {
-    'a-tabs': Tabs,
-    'a-tab-pane': TabPane
+  props: {
+    data: {
+      required: true,
+      type: Object
+    }
   }
 })
-export default class ThreeJS extends Vue {
+export default class Demo1 extends Vue {
+  readonly data: any;
+  refs: {
+    ThreeJs: any;
+    ThreeJs1: any;
+    ThreeJs3: any;
+  }
   width: any;
   height: any;
   scene: any;
@@ -26,93 +26,22 @@ export default class ThreeJS extends Vue {
   geometry: any;
   line: any;
   material: any;
-  lists: any = [
-    {
-      key: 1,
-      title: 'Drawing Lines'
-    },
-    {
-      key: 2,
-      title: 'Creating Text',
-    },
-    {
-      key: 3,
-      title: 'Loading 3D models'
-    }
-  ]
+
   render() {
     return (
-      <div class="ThreeJs" ref='ThreeJs'>
-        <a-tabs defaultActiveKey="1" onTabClick={this.handleTabClick} tabPosition={'left'} style={{ height: 220 }}>
-          {
-            this.lists.map((item: any) => {
-              return (
-                <a-tab-pane tab={`${item.title}`} key={item.key}>
-                  {this.getTabPane(item)}
-                </a-tab-pane>
-              )
-            })
-          }
-        </a-tabs>
-
-      </div>
+      <div class={`ThreeJs${this.data.key}`} ref={`ThreeJs${this.data.key}`}></div>
     )
   }
 
+
   mounted() {
-    this.handleTabClick(1);
-  }
-
-  initParams() {
-    this.width = null;
-    this.height = null;
-    this.scene = null;
-    this.renderer = null;
-    this.camera = null;
-    this.geometry = null;
-    this.line = null;
-    this.material = null;
-  }
-
-
-  getTabPane(item: any) {
-    switch (item.key) {
-      case 1:
-        return <Demo1 data={item} />;
-      case 2:
-        return <Demo2 />;
-      case 3:
-        return <Demo3 />;
-      default:
-        return null;
-    }
-  }
-
-  handleTabClick(key: number) {
-    switch (key) {
-      case 1:
-        this.demo1(key);
-        break;
-      case 2:
-        this.demo2(key)
-        break;
-      case 3:
-        this.demo3(key);
-    }
-  }
-
-
-  demo1(key: number) {
-    this.initThree(key);
+    this.demo2(this.data.key);
   }
 
   demo2(key: number) {
     this.initThree(key);
     this.initCamera();
     this.initScene();
-  }
-  demo3(key: number) {
-
   }
 
   initThree(key: number) {
@@ -158,7 +87,6 @@ export default class ThreeJS extends Vue {
   initScene() {
     this.scene = new THREE.Scene();
   }
-
   initBasicLine() {
     this.material = new THREE.LineBasicMaterial({ color: 0x0000ff });
     this.geometry = new THREE.Geometry();

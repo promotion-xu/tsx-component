@@ -45,14 +45,6 @@ export const dyRoutes: RouterItem[] = [
     component: () => import('@/modules/GaoDe')
   },
   {
-    path: '/livingCheck',
-    title: '活体识别',
-    name: 'livingCheck',
-    isMenu: true,
-    icon: '',
-    component: () => import('@/modules/LivingCheck')
-  },
-  {
     path: '/threeD/demo1',
     title: 'ThreeJs-demo1',
     name: 'ThreeJs-demo1',
