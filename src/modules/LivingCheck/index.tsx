@@ -20,6 +20,10 @@ export default class LivingCheck extends Vue {
     )
   }
 
+  mounted() {
+    console.log('visible', this.visible);
+  }
+
   handleSubmit(val: any) {
     this.visible = false;
   }

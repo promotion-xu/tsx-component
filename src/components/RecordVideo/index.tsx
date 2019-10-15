@@ -24,6 +24,7 @@ import './index.scss'
   }
 })
 
+
 export default class RecordVideo extends Vue {
   recordStarted: any;
   mediaRecorder: any;
