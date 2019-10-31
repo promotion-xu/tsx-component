@@ -109,6 +109,11 @@ export const dyRoutes: RouterItem[] = [
     path: '/LivingCheck',
     title: '活体检测',
     component: () => import('@/modules/LivingCheck')
+  },
+  {
+    path: '/Ht/1',
+    title: 'HT FOR WEB',
+    component: () => import('@/modules/Ht/Ht-1')
   }
 ]
 

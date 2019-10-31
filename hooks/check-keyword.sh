@@ -10,7 +10,7 @@ echo  "${green}start checking keyword${reset}"
 
 for FILE in `git diff --name-only --cached`; do
 
-    if [[ $FILE == *".sh"* ]] || [[ $FILE == *"iconfont.js"* || $FILE == *"ExamplePage"* ||　$FILE == *"min.js"* ||　$FILE == *"vendor/*"* || $FILE == *"map.js"* || $FILE == *"map_city.js"* ]] ; then
+    if [[ $FILE == *".sh"* ]] || [[ $FILE == *".js"* || $FILE == *"iconfont.js"* || $FILE == *"ExamplePage"* ||　$FILE == *"min.js"* ||　$FILE == *"vendor/*"* || $FILE == *"map.js"* || $FILE == *"map_city.js"* ]] ; then
         echo $FILE
         continue
     fi

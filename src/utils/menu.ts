@@ -92,6 +92,19 @@ export const routes: RouterItem[] = [
     ]
   },
   {
+    path: '/Ht',
+    icon: '',
+    title: 'HT FOR WEB',
+    isMenu: true,
+    subs: [
+      {
+        path: '/Ht/1',
+        title: 'HT1',
+        isMenu: true
+      }
+    ]
+  },
+  {
     path: '/ws',
     title: 'WebSocket',
     icon: '',
