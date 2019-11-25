@@ -20,3 +20,6 @@ declare module 'ant-design-vue/lib/locale-provider/zh_CN' {
   const zh_CN: any;
   export default zh_CN;
 }
+
+declare module 'lodash/assign';
+declare module 'lodash/cloneDeep';
